@@ -1,4 +1,4 @@
-<?php 
+<?php   
 require 'functions.php';
 
 $smartphone = query("SELECT * FROM smartphones");
@@ -25,7 +25,7 @@ if (isset($_POST['cari'])) {
 		<button type="submit" name="cari">Cari!</button>
 	</form>
 		<br>
-	<table border="1" cellpadding="10" cellspacing="0" class="table table-striped">
+	<table border="1" cellpadding="10" cellspacing="0" class="table table-hover table-info">
 		<tr>
 			<th>No</th>
 			<th>Aksi</th>
