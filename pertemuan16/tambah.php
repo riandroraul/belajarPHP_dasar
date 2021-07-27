@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 
 if (!isset($_SESSION['login'])) {
@@ -9,29 +8,19 @@ if (!isset($_SESSION['login'])) {
 
 require 'functions.php';
 
-// ambil data dari url
-$id = $_GET['id'];
-
-// query data smartphone berdasarkan id
-$smartphone = query("SELECT * FROM smartphones WHERE id = $id")[0];
-
-
 // cek apakah tombol submit sudah ditekan atau belum
 if (isset($_POST['submit'])) {
-
-    // cek apakah data berhasil diubah atau tidak
-
-    if (ubah($_POST) > 0) {
+    if (tambah($_POST) > 0) {
         echo "
             <script>
-            alert('Data Berhasil Diubah!');
+            alert('Data Berhasil Ditambahkan!');
             document.location.href = 'index.php';
             </script>
         ";
     } else {
         echo "
             <script>
-            alert('Data Gagal Diubah!');
+            alert('Data Gagal Ditambahkan!');
             document.location.href = 'index.php';
             </script>
         ";
@@ -44,39 +33,36 @@ if (isset($_POST['submit'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ubah Data Smarthpone</title>
+    <title>Tambah Data Smarthpone</title>
     <link rel="stylesheet" type="text/css" href="../bootstrap-5.0.2/css/bootstrap.css">
 </head>
 
 <body>
-    <h1>Ubah Data Smarthpone</h1>
+    <h1>Tambah Data Smarthpone</h1>
     <form action="" method="post" enctype="multipart/form-data">
-        <input type="hidden" name="id" value="<?= $smartphone['id']; ?>">
-        <input type="hidden" name="gambarLama" value="<?= $smartphone['Gambar']; ?>">
         <ul>
             <li>
                 <label for="Type">Type : </label>
-                <input type="text" name="Type" id="Type" required value="<?= $smartphone['Type']; ?>">
+                <input type="text" name="Type" id="Type" required>
             </li>
             <li>
                 <label for="Harga">Harga : </label>
-                <input type="text" name="Harga" id="Harga" required value="<?= $smartphone['Harga']; ?>">
+                <input type="text" name="Harga" id="Harga" required>
             </li>
             <li>
                 <label for="Processor">Processor : </label>
-                <input type="text" name="Processor" id="Processor" required value="<?= $smartphone['Processor']; ?>">
+                <input type="text" name="Processor" id="Processor" required>
             </li>
             <li>
                 <label for="Baterai">Baterai : </label>
-                <input type="text" name="Baterai" id="Baterai" required value="<?= $smartphone['Baterai']; ?>">
+                <input type="text" name="Baterai" id="Baterai" required>
             </li>
             <li>
-                <label for="Gambar">Gambar : </label><br>
-                <img src="../img/<?= $smartphone['Gambar']; ?>"><br>
-                <input type="file" name="Gambar" id="Gambar">
+                <label for="Gambar">Gambar : </label>
+                <input type="file" name="Gambar" id="Gambar" style="width:300px">
             </li>
             <li>
-                <button type="submit" name="submit">Ubah Data!</button>
+                <button type="submit" name="submit" class="btn btn-primary">Tambah Data!</button>
             </li>
         </ul>
     </form>

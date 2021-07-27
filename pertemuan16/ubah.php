@@ -1,12 +1,5 @@
 <?php
 
-session_start();
-
-if (!isset($_SESSION['login'])) {
-    header("Location: login.php");
-    exit;
-}
-
 require 'functions.php';
 
 // ambil data dari url
@@ -19,16 +12,16 @@ $smartphone = query("SELECT * FROM smartphones WHERE id = $id")[0];
 // cek apakah tombol submit sudah ditekan atau belum
 if (isset($_POST['submit'])) {
 
-    // cek apakah data berhasil diubah atau tidak
-
-    if (ubah($_POST) > 0) {
+	// cek apakah data berhasil diubah atau tidak
+	
+    if (ubah($_POST) > 0 ) {
         echo "
             <script>
             alert('Data Berhasil Diubah!');
             document.location.href = 'index.php';
             </script>
         ";
-    } else {
+    }else{
         echo "
             <script>
             alert('Data Gagal Diubah!');
@@ -51,7 +44,7 @@ if (isset($_POST['submit'])) {
 <body>
     <h1>Ubah Data Smarthpone</h1>
     <form action="" method="post" enctype="multipart/form-data">
-        <input type="hidden" name="id" value="<?= $smartphone['id']; ?>">
+    	<input type="hidden" name="id" value="<?= $smartphone['id']; ?>">
         <input type="hidden" name="gambarLama" value="<?= $smartphone['Gambar']; ?>">
         <ul>
             <li>
